@@ -72,7 +72,7 @@ void minInsertionDeletion(string x, string y, int n, int m){
 }
 int longestPallindromicSubsequence(string x, int n){
     string y = x;
-    reverse(y.begin(), y.end());
+    reverse(y.begin(), y.end());    
     return LCSTopDown(x,y,n,n);
 }
 int minDeletionToMakePallindrome(string x, int n){

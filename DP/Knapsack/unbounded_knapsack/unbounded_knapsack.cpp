@@ -5,6 +5,8 @@ using namespace std;
 
 int t[1000][1000];
 int unboundedKnapsackTopDown(int wt[],int val[], int w, int n){
+    // or Rod cutting problem
+
     memset(t,-1,sizeof(t));
     for(int i=1; i<n+1; i++)//filling first column
         for(int j=0; j<w+1; j++)//filling first row
@@ -40,7 +42,35 @@ int unboundedKnapsackBottomUp(int wt[],int val[], int w, int n){
     return t[n][w];
 }
 
+long long int coinChangeFirst(int coin[], int sum, int n){
+    //max number of ways
+    int m = n;
+    int n = sum;
+    long long t[n+1][m+1];
+       
+       for(int i=1; i<m+1; i++){
+           t[0][i] = 0;   
+       }
+       
+       for(int i=0; i<n+1; i++){
+           t[i][0] = 1;
+       }
+       
+       for(int i=1; i<n+1; i++){
+           for(int j=1; j < m+1; j++){
+               if(S[i-1] <= j){
+                   t[i][j] = t[i-1][j]+t[i][j-S[i-1]];
+               }
+               else{
+                   t[i][j] = t[i-1][j];
+               }
+           }
+       }
+       return t[n][m];
+}
+
 int coinChangeSecond(int coin[], int sum, int n){
+    //min. number of coins
     memset(t,-1,sizeof(t));
     for(int i=1; i<n+1; i++){
         for(int j=0; j<sum+1; j++){
@@ -64,7 +94,8 @@ int coinChangeSecond(int coin[], int sum, int n){
                 t[i-1][j]);
             else
                 t[i][j] = t[i-1][j];
-
+                
+    if(t[n][sum]==INT_MAX-1) return -1;
     return t[n][sum];
 }
 
