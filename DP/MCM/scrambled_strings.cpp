@@ -16,6 +16,7 @@ bool scrambledStringMCM(string a, string b){
     for(int i=1; i<n; i++){
         bool c1 = scrambledStringMCM(a.substr(0,i),b.substr(n-i,i)) && 
                    scrambledStringMCM(a.substr(i,n-i),b.substr(0,n-i));
+
         bool c2 = scrambledStringMCM(a.substr(0,i),b.substr(0,i)) &&
                   scrambledStringMCM(a.substr(i,n-i),b.substr(i,n-i));
         if(c1 || c2) {
@@ -31,8 +32,8 @@ bool scrambledString(string a, string b){
     return scrambledStringMCM(a,b);
 }
 int main(){
-    string a = "great";
-    string b = "rgate";
+    string a = "abbbcbaaccacaacc";
+    string b = "acaaaccabcabcbcb";
 
     cout<<"Scrambled string : "<<scrambledString(a,b)<<endl;
 }
