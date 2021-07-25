@@ -1,10 +1,7 @@
 #include<iostream>
 using namespace std;
-int countWays(int N, string S){
-        memset(t,-1,sizeof(t));
-        return solve(S,0,S.size()-1,true) ;
-    }
-    
+int t[1001][1001][2];
+
     int solve(string &s, int i, int j, int isTrue){
         if(i>j) return 0;
         if(i==j) return isTrue? s[i] =='T' : s[i] == 'F';
@@ -26,8 +23,13 @@ int countWays(int N, string S){
         }
         return t[i][j][isTrue]= ans % 1003;
     }
+    int countWays(int N, string S){
+        memset(t,-1,sizeof(t));
+        return solve(S,0,S.size()-1,true) ;
+    }
+    
 int main(){
-    string s= "T|F&T^F";
+    string s= "F|T^T&F";
     cout<<"Ways to Parenthesize: "<<countWays(s.size(),s)<<endl;
 
 }

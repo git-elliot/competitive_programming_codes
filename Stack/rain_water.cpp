@@ -35,16 +35,14 @@ public:
         return mxL;
     }
     
-    vector<int> maxR(vector<int>& height){
-        vector<int> mxR;
+    vector<int> maxR(vector<int>& height){        
         int size = height.size();
-        mxR.push_back(height[size-1]);
+        vector<int> mxR(size);
+        mxR[size-1]=height[size-1];
         
         for(int i=size-2 ; i>=0; i--){
-            mxR.push_back(max(mxR[i+1],height[i]));
+            mxR[i] = max(mxR[i+1],height[i]);
         }
-        
-        reverse(mxR.begin(), mxR.end());
         return mxR;
     }
 };
